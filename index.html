@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Origem Usinagem CNC</title>
+    <style>
+        :root {
+            --primary: #1A202C;
+            --accent: #E2E8F0;
+            --highlight: #2B6CB0;
+            --text: #4A5568;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { color: var(--text); line-height: 1.6; background-color: #F7FAFC; }
+        
+        /* Navegação */
+        header { background: var(--primary); color: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        header h1 { font-size: 1.5rem; letter-spacing: 1px; color: var(--accent); }
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav a { color: var(--accent); text-decoration: none; font-weight: 600; transition: color 0.3s; }
+        nav a:hover { color: #63B3ED; }
+        
+        /* Hero Section */
+        .hero { background: linear-gradient(rgba(26, 32, 44, 0.8), rgba(26, 32, 44, 0.8)), url('https://images.unsplash.com/photo-1565439390234-58a43516597f?q=80&w=2070') center/cover; color: white; text-align: center; padding: 100px 20px; }
+        .hero h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; }
+        .btn { background: var(--highlight); color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1.1rem; }
+        .btn:hover { background: #2C5282; }
+
+        /* Seções Gerais */
+        section { padding: 60px 5%; max-width: 1200px; margin: auto; }
+        section h2 { text-align: center; color: var(--primary); margin-bottom: 40px; font-size: 2rem; }
+
+        /* História */
+        .about-content { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+
+        /* Serviços */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; border-top: 4px solid var(--highlight); }
+        .service-card h3 { margin-bottom: 15px; color: var(--primary); }
+
+        /* Contato */
+        .contact-container { text-align: center; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .contact-container p { margin-bottom: 15px; font-size: 1.1rem; }
+        
+        /* Footer */
+        footer { background: var(--primary); color: var(--accent); text-align: center; padding: 20px; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ORIGEM USINAGEM</h1>
+        <nav>
+            <ul>
+                <li><a href="#sobre">História</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h2>Precisão que Impulsiona a Indústria</h2>
+        <p>Especialistas em tornearia CNC, fabricação de peças sob medida e industrialização por encomenda para operações B2B de alta exigência.</p>
+        <a href="#contato" class="btn">Solicitar Orçamento</a>
+    </div>
+
+    <section id="sobre">
+        <h2>Nossa História</h2>
+        <div class="about-content">
+            <p>A <strong>Origem Usinagem CNC</strong> não nasceu em um galpão espelhado com máquinas recém-saídas da caixa. Nossa história começa de forma honesta e raiz: dentro de uma garagem, movida pelo suor e pelo sonho de transformar mais de 20 anos de experiência prática em um negócio próprio.
+
+Durante duas décadas, nosso fundador atuou como programador CNC em grandes empresas do setor metalúrgico, vivenciando o rigor das tolerâncias, a pressão dos prazos e o altíssimo nível de exigência da indústria. Hoje, toda essa bagagem técnica e capacidade de resolução de problemas está, sem intermediários, à disposição da sua empresa.
+
+Nossa estrutura inicial é rústica e construída com muito esforço. Operamos com um maquinário clássico e robusto, adquirido para dar o pontapé inicial nesta jornada de progresso contínuo. Nós sabemos que a verdadeira precisão não está na carenagem de um equipamento novo, mas sim na mente, na vivência e no capricho de quem o programa.
+
+Na Origem Usinagem, o seu projeto não é tratado como apenas mais um número em uma planilha corporativa. Nós entregamos dedicação absoluta, comunicação transparente e a garantia de que cada peça carrega o respeito de quem conhece a usinagem em sua essência</p>
+        </div>
+    </section>
+
+    <section id="servicos">
+        <h2>Soluções Industriais</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Usinagem CNC</h3>
+                <p>Fabricação seriada de peças com alto rigor dimensional. Trabalhamos com aço carbono, inox, alumínio e ligas especiais.</p>
+            </div>
+            <div class="service-card">
+                <h3>Peças sob Medida</h3>
+                <p>Desenvolvimento e usinagem de componentes exclusivos baseados em desenhos técnicos e projetos específicos do cliente.</p>
+            </div>
+            <div class="service-card">
+                <h3>Industrialização</h3>
+                <p>Recebemos a sua matéria-prima e entregamos a peça finalizada com acabamento impecável, reduzindo seus custos operacionais.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato">
+        <h2>Fale Conosco</h2>
+        <div class="contact-container">
+            <p><strong>E-mail:</strong> origemusinagem@gmail.com</p>
+            <p><strong>Atendimento B2B:</strong> (11) 95242-5188</p>
+            <p><strong>Localização:</strong> São Paulo - SP</p>
+            <br>
+            <!-- Contêiner Flex para alinhar os botões lado a lado -->
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+                
+                <!-- Botão WhatsApp (com a cor oficial e mensagem pronta) -->
+                <a href="https://l.instagram.com/?u=https%3A%2F%2Fwa.me%2F5511952425188%3Ftext%3DOl%C3%A1%252C%2520vim%2520pelo%2520Instagram%2520da%2520ORIGEM%2520e%2520gostaria%2520de%2520solicitar%2520um%2520or%C3%A7amento.&e=AUDXajH3jg2io7Gak_qTTTbKlH3cn7ynFKtyfPQ3JTipN6i6iX8hDlroytrp5qmM4nG8cHuWr_34o2aZ8jcldabKVVkXRcl8uMNLKfDXtAGdXG_kad_VhVlH2cF3dU6dK5YEEwRWhiBcXtjulXp-oA" target="_blank" class="btn" style="background: #25D366; color: white;">WhatsApp</a>
+
+                <a href="mailto:origemusinagem@gmail.com" class="btn">Enviar E-mail</a>
+                
+                                
+                <!-- Botão Instagram (com a cor oficial) -->
+                <a href="https://www.instagram.com/origemusinagem" target="_blank" class="btn" style="background: #E1306C; color: white;">Instagram</a>
+                
+            </div>
+        </div>
