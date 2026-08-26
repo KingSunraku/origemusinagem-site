@@ -4,82 +4,167 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Origem Usinagem CNC</title>
+    <!-- Biblioteca para carregar os ícones dos botões -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --primary: #1A202C;
-            --accent: #E2E8F0;
-            --highlight: #2B6CB0;
-            --text: #4A5568;
+            --dark-bg: #000000;
+            --gold-light: #d4ba80;
+            --gold-dark: #a98544;
+            --text-dark: #1A202C;
+            --text-light: #ffffff;
+            --bg-gray: #f8f9fa;
         }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { color: var(--text); line-height: 1.6; background-color: #F7FAFC; }
+        body { color: var(--text-dark); line-height: 1.6; background-color: var(--bg-gray); }
         
-        /* Navegação */
-        header { background: var(--primary); color: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
-        header h1 { font-size: 1.5rem; letter-spacing: 1px; color: var(--accent); }
-        nav ul { list-style: none; display: flex; gap: 20px; }
-        nav a { color: var(--accent); text-decoration: none; font-weight: 600; transition: color 0.3s; }
-        nav a:hover { color: #63B3ED; }
+        /* Cabeçalho e Navegação */
+        .site-header { 
+            background: var(--dark-bg); 
+            padding: 15px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: absolute; 
+            width: 100%;
+            top: 0; 
+            z-index: 100; 
+        }
         
+        .logo-img { 
+            max-width: 150px; 
+            height: auto;
+        }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-size: 1rem; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--gold-light); }
+
         /* Hero Section */
-        .hero { background: linear-gradient(rgba(26, 32, 44, 0.8), rgba(26, 32, 44, 0.8)), url('https://images.unsplash.com/photo-1565439390234-58a43516597f?q=80&w=2070') center/cover; color: white; text-align: center; padding: 100px 20px; }
-        .hero h2 { font-size: 2.5rem; margin-bottom: 20px; }
-        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; }
-        .btn { background: var(--highlight); color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1.1rem; }
-        .btn:hover { background: #2C5282; }
+        .hero { 
+            background-color: var(--dark-bg);
+            background-image: repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(212, 186, 128, 0.1) 40px, rgba(212, 186, 128, 0.1) 42px);
+            color: white; text-align: center; padding: 160px 20px 80px; position: relative;
+        }
+        .hero h2 { font-size: 2.5rem; margin-bottom: 20px; font-weight: bold; }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 40px; color: #dddddd; }
+        
+        /* Botão Dourado 3D */
+        .btn-gold { 
+            background: linear-gradient(to bottom, #d8bf86, #b8924b); 
+            color: white; padding: 12px 40px; text-decoration: none; border-radius: 4px; font-size: 1.2rem; font-weight: 500; display: inline-block;
+            box-shadow: inset 1px 2px 2px rgba(255,255,255,0.6), inset -1px -2px 2px rgba(0,0,0,0.3), 2px 4px 5px rgba(0,0,0,0.4);
+            border: 1px solid #85662d; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .btn-gold:active { transform: translateY(2px); box-shadow: inset 2px 3px 4px rgba(0,0,0,0.4); }
+
+        /* Faixa Dourada */
+        .gold-stripe { height: 40px; background: linear-gradient(to right, #b8924b, #e6d3a1, #b8924b); width: 100%; }
 
         /* Seções Gerais */
-        section { padding: 60px 5%; max-width: 1200px; margin: auto; }
-        section h2 { text-align: center; color: var(--primary); margin-bottom: 40px; font-size: 2rem; }
+        section { padding: 80px 5%; max-width: 1100px; margin: auto; }
+        section h2 { text-align: center; color: var(--text-dark); margin-bottom: 50px; font-size: 2rem; font-weight: bold; }
 
         /* História */
-        .about-content { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .about-content { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .about-content p { margin-bottom: 15px; color: #555; }
 
-        /* Serviços */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .service-card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; border-top: 4px solid var(--highlight); }
-        .service-card h3 { margin-bottom: 15px; color: var(--primary); }
-
-        /* Contato */
-        .contact-container { text-align: center; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .contact-container p { margin-bottom: 15px; font-size: 1.1rem; }
+        /* Soluções Industriais (Cards iguais à imagem) */
+        .services-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+        }
         
-        /* Footer */
-        footer { background: var(--primary); color: var(--accent); text-align: center; padding: 20px; margin-top: 40px; }
+        .service-card { 
+            background: white; 
+            padding: 40px 30px; 
+            border-radius: 8px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08); 
+            text-align: center; 
+            position: relative;
+            overflow: hidden; /* Mantém a barra do topo dentro das bordas arredondadas */
+        }
+        
+        /* A barra preta e dourada no topo de cada card */
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 18px; /* Espessura da barra preta */
+            background-color: var(--dark-bg);
+            border-bottom: 3px solid var(--gold-dark); /* O filete dourado */
+        }
+
+        .service-card h3 { 
+            margin-top: 10px;
+            margin-bottom: 20px; 
+            color: var(--text-dark); 
+            font-size: 1.3rem;
+        }
+        
+        .service-card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Botões de Contato 3D */
+        .contact-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 30px; }
+        .btn-3d { display: flex; align-items: center; gap: 10px; padding: 12px 25px; color: white; text-decoration: none; font-size: 1.1rem; font-weight: bold; border-radius: 4px; box-shadow: inset 2px 2px 3px rgba(255,255,255,0.5), inset -2px -3px 3px rgba(0,0,0,0.3), 3px 4px 6px rgba(0,0,0,0.2); transition: transform 0.1s; }
+        .btn-3d:active { transform: translateY(2px); box-shadow: inset 2px 3px 5px rgba(0,0,0,0.4); }
+        .btn-whatsapp { background: linear-gradient(to bottom, #34d86b, #1da34b); border: 1px solid #147936; }
+        .btn-email { background: linear-gradient(to bottom, #69d1f3, #3da2c4); border: 1px solid #287a96; }
+        .btn-linkedin { background: linear-gradient(to bottom, #008cc9, #006390); border: 1px solid #004566; }
+        .btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border: 1px solid #8e155c; }
+
+        /* Responsividade para Celular */
+        @media (max-width: 768px) {
+            .site-header { flex-direction: column; gap: 15px; position: relative; }
+            .logo-img { max-width: 120px; }
+            .nav-links { gap: 15px; }
+            .hero { padding: 60px 20px 40px; }
+            .hero h2 { font-size: 1.8rem; }
+            .btn-3d { width: 100%; justify-content: center; }
+            .services-grid { grid-template-columns: 1fr; } /* Cartões um embaixo do outro no celular */
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>ORIGEM USINAGEM</h1>
-        <nav>
-            <ul>
-                <li><a href="#sobre">História</a></li>
-                <li><a href="#servicos">Serviços</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
+    <header class="site-header">
+        <!-- Coloque o arquivo logo.png na mesma pasta do seu index.html -->
+        <img src="LogoOrigem.png" alt="Logo Origem Usinagem" class="logo-img">
+        
+        <nav class="nav-links">
+            <a href="#historia">História</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#contato">Contato</a>
         </nav>
     </header>
 
     <div class="hero">
         <h2>Precisão que Impulsiona a Indústria</h2>
         <p>Especialistas em tornearia CNC, fabricação de peças sob medida e industrialização por encomenda para operações B2B de alta exigência.</p>
-        <a href="#contato" class="btn">Solicitar Orçamento</a>
+        <a href="#contato" class="btn-gold">Solicitar orçamento</a>
     </div>
+    
+    <div class="gold-stripe"></div>
 
-    <section id="sobre">
+    <section id="historia">
         <h2>Nossa História</h2>
         <div class="about-content">
-            <p>A <strong>Origem Usinagem CNC</strong> não nasceu em um galpão espelhado com máquinas recém-saídas da caixa. Nossa história começa de forma honesta e raiz: dentro de uma garagem, movida pelo suor e pelo sonho de transformar mais de 20 anos de experiência prática em um negócio próprio.
-
-Durante duas décadas, nosso fundador atuou como programador CNC em grandes empresas do setor metalúrgico, vivenciando o rigor das tolerâncias, a pressão dos prazos e o altíssimo nível de exigência da indústria. Hoje, toda essa bagagem técnica e capacidade de resolução de problemas está, sem intermediários, à disposição da sua empresa.
-
-Nossa estrutura inicial é rústica e construída com muito esforço. Operamos com um maquinário clássico e robusto, adquirido para dar o pontapé inicial nesta jornada de progresso contínuo. Nós sabemos que a verdadeira precisão não está na carenagem de um equipamento novo, mas sim na mente, na vivência e no capricho de quem o programa.
-
-Na Origem Usinagem, o seu projeto não é tratado como apenas mais um número em uma planilha corporativa. Nós entregamos dedicação absoluta, comunicação transparente e a garantia de que cada peça carrega o respeito de quem conhece a usinagem em sua essência</p>
+            <p>A <strong>Origem Usinagem CNC</strong> não nasceu em um galpão espelhado com máquinas recém-saídas da caixa. Nossa história começa de forma honesta e raiz: dentro de uma garagem, movida pelo suor e pelo sonho de transformar mais de 20 anos de experiência prática em um negócio próprio.</p>
+            <p>Durante duas décadas, nosso fundador atuou como programador CNC em grandes empresas do setor metalúrgico, vivenciando o rigor das tolerâncias, a pressão dos prazos e o altíssimo nível de exigência da indústria. Hoje, toda essa bagagem técnica e capacidade de resolução de problemas está, sem intermediários, à disposição da sua empresa.</p>
+            <p>Nossa estrutura inicial é rústica e construída com muito esforço. Operamos com um maquinário clássico e robusto, adquirido para dar o pontapé inicial nesta jornada de progresso contínuo. Nós sabemos que a verdadeira precisão não está na carenagem de um equipamento novo, mas sim na mente, na vivência e no capricho de quem o programa.</p>
         </div>
     </section>
 
+    <!-- SEÇÃO DE SERVIÇOS ADICIONADA -->
     <section id="servicos">
         <h2>Soluções Industriais</h2>
         <div class="services-grid">
@@ -100,24 +185,22 @@ Na Origem Usinagem, o seu projeto não é tratado como apenas mais um número em
 
     <section id="contato">
         <h2>Fale Conosco</h2>
-        <div class="contact-container">
-            <p><strong>E-mail:</strong> origemusinagem@gmail.com</p>
-            <p><strong>Atendimento B2B:</strong> (11) 95242-5188</p>
-            <p><strong>Localização:</strong> São Paulo - SP</p>
-            <br>
-            <!-- Contêiner Flex para alinhar os botões lado a lado -->
-            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
-                
-                <!-- Botão WhatsApp (com a cor oficial e mensagem pronta) -->
-                <a href="https://wa.me/message/P6ZDLG4IVPNOH1" target="_blank" class="btn" style="background: #25D366; color: white;">WhatsApp</a>
-
-                <a href="mailto:origemusinagem@gmail.com" class="btn">Enviar E-mail</a>
-
-                <!-- Botão LinkedIn (com a cor oficial) -->
-                <a href="https://www.linkedin.com/company/origemusinagem" target="_blank" class="btn" style="background: #0077b5; color: white;">LinkedIn</a>
-                                
-                <!-- Botão Instagram (com a cor oficial) -->
-                <a href="https://www.instagram.com/origemusinagem" target="_blank" class="btn" style="background: #E1306C; color: white;">Instagram</a>
-                
-            </div>
+        
+        <div class="contact-buttons">
+            <a href="https://wa.me/5511952425188" target="_blank" class="btn-3d btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="mailto:origemusinagem@gmail.com" class="btn-3d btn-email">
+                <i class="fas fa-envelope"></i> E-mail
+            </a>
+            <a href="https://www.linkedin.com/company/origemusinagem" target="_blank" class="btn-3d btn-linkedin">
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+            </a>
+            <a href="https://instagram.com/origemusinagem" target="_blank" class="btn-3d btn-instagram">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
         </div>
+    </section>
+
+</body>
+</html>
